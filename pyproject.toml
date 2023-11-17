@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "torch_dag"
+authors = [
+  { name="TCL Research Europe" },
+]
+description = "torch-dag is a repository in which we implement a graph-like representation for torch models so that we have a unified structure for every model."
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+]
+dynamic = ["version", "dependencies"]
+
+[project.scripts]
+td_utils = "torch_dag_algorithms.cli:cli"
+
+[tool.setuptools.dynamic]
+version = {file = "VERSION"}
+dependencies = {file = ["docker/requirements.txt"]}
+
+[tool.hatch.version]
+path = "VERSION"
+pattern = "(?P<version>[^']+)"
+
+[tool.setuptools.packages.find]
+where = ["."]
+exclude = ["tests*"]
+
