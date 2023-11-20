@@ -1,0 +1,10 @@
+version: 2
+updates:
+  - package-ecosystem: "pip"
+    directory: "docker"
+    schedule:
+      interval: "daily"
+    allow:
+      # Allow only direct updates for
+      - dependency-name: "torch"
+      - dependency-name: "timm"
