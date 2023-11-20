@@ -1,0 +1,27 @@
+name: Heavy tests
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '45 12 1 * *' # 12:45 every day
+permissions:
+  contents: read
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    container:
+          image: registry.gitlab.com/tcl-research/auto-ml/devine/torch-dag:0.0.9-pytorch-2.1.0-timm-0.9.5-cuda11.8-cudnn8-runtime
+          credentials:
+            username: ${{ secrets.DOCKER_TCL_USER}}
+            password: ${{ secrets.DOCKER_TCL_P}}
+          options: --user root
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Run tests
+      run: |
+        pip install pytest-forked
+        pytest tests --forked
+        
