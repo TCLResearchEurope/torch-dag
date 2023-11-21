@@ -51,42 +51,11 @@ In the cloned project's root (where this README.md file is) run
 pip install -e .
 ```
 
-## 3.2 Installation from remote
+## 3.2 Installation from PyPI
 
-TODO: This method is only guaranteed to work for TCL Research Europe AutoML team members. This section should not exist in a public code release.
-
-1. Ensure `~/.netrc` is configured as shown: (only done once)
-
-    ```
-    machine gitlab.com
-    	login name.surname.tcl
-    	password <your personal access token>
-    Ensure proper access rights:
-    chown $USER ~/.netrc
-    chmod 0600 ~/.netrc
-    ```
-
-    [Source](https://stackoverflow.com/questions/50468951/credentials-in-pip-conf-for-private-pypi)
-
-2. Ensure your `pip` knows the AutoML package index (only done once)
-    
-    In `~/.config/pip/pip.conf` (create if doesn't exist)
-
-    ```
-    [global]
-    extra-index-url = https://gitlab.com/api/v4/projects/43793970/packages/pypi/simple
-                      <other package index urls>
-    ```
-
-    [Source](https://stackoverflow.com/questions/30889494/can-pip-conf-specify-two-index-url-at-the-same-time)
-
-3. You can now install `torch-dag` as any other package via pip, i.e.
-
-    ```bash
-    pip install torch-dag
-    ```
-
-    Include any flags you wish to use.
+```bash
+pip install torch-dag
+```
 
 # 4. Basics
 
