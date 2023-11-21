@@ -14,6 +14,9 @@ jobs:
     container:
           image: ghcr.io/tclresearcheurope/torch-dag:0.0.9-pytorch-2.1.0-cuda11.8-cudnn8-runtime
           options: --user root
+          credentials:
+            username: ${{ github.actor }}
+            password: ${{ secrets.github_token }}
 
     steps:
     - uses: actions/checkout@v4
