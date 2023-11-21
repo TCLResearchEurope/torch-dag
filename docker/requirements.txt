@@ -2,7 +2,7 @@ click
 fvcore
 thop
 transformers
-timm==0.9.5
+timm==0.9.11
 torch==2.1.0
 termcolor
 pytest
