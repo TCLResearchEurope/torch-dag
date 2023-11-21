@@ -3,7 +3,7 @@ fvcore
 thop
 transformers
 timm==0.9.5
-torch==2.1.0
+torch==2.1.1
 termcolor
 pytest
 ipdb
