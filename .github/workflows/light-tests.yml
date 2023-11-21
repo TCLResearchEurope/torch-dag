@@ -16,7 +16,7 @@ jobs:
 
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/tclresearcheurope/torch-dag:0.0.9-pytorch-2.1.0-cuda11.8-cudnn8-runtime
+      image: ghcr.io/tclresearcheurope/torch-dag/image:0.0.9-pytorch-2.1.0-cuda11.8-cudnn8-runtime
       options: --user root
 
 
