@@ -1,3 +1,5 @@
+[![Heavy tests](https://github.com/TCLResearchEurope/torch-dag/actions/workflows/heavy-tests.yml/badge.svg)](https://github.com/TCLResearchEurope/torch-dag/actions/workflows/heavy-tests.yml)
+
 # 1. What is `torch-dag`?
 
 `torch-dag` is a repository in which we implement a graph-like representation for `torch` models so that we have a
