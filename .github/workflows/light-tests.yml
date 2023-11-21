@@ -3,25 +3,24 @@ name: Light tests
 on:
   push:
     tags:
-        - '!v*'
+      - '!v*'
   pull_request:
-    branches: [ "master" ]
+    branches: [ "main" ]
 
 permissions:
   contents: read
+  packages: read
 
 jobs:
   run-tests:
 
     runs-on: ubuntu-latest
     container:
-          image: registry.gitlab.com/tcl-research/auto-ml/devine/torch-dag:0.0.9-pytorch-2.1.0-timm-0.9.5-cuda11.8-cudnn8-runtime
-          credentials:
-            username: ${{ secrets.DOCKER_TCL_USER}}
-            password: ${{ secrets.DOCKER_TCL_P}}
-          options: --user root
+      image: ghcr.io/tclresearcheurope/torch-dag/image:0.0.9-pytorch-2.1.0-cuda11.8-cudnn8-runtime
+      options: --user root
+
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Test with pytest
-      run: pytest --light tests
+      - uses: actions/checkout@v4
+      - name: Test with pytest
+        run: pytest --light tests
