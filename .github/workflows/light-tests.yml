@@ -3,25 +3,24 @@ name: Light tests
 on:
   push:
     tags:
-        - '!v*'
+      - '!v*'
   pull_request:
     branches: [ "main" ]
 
 permissions:
   contents: read
+  packages: read
 
 jobs:
   run-tests:
 
     runs-on: ubuntu-latest
     container:
-          image: ghcr.io/tclresearcheurope/torch-dag:0.0.9-pytorch-2.1.0-cuda11.8-cudnn8-runtime
-          options: --user root
-          credentials:
-            username: ${{ github.actor }}
-            password: ${{ secrets.ghcr_token }}
+      image: ghcr.io/tclresearcheurope/torch-dag:0.0.9-pytorch-2.1.0-cuda11.8-cudnn8-runtime
+      options: --user root
+
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Test with pytest
-      run: pytest --light tests
+      - uses: actions/checkout@v4
+      - name: Test with pytest
+        run: pytest --light tests
