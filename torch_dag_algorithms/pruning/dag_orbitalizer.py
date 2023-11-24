@@ -232,8 +232,8 @@ class GeneralOrbitalizer(Orbitalizer):
 
         found_final_orbits = [orbit for orbit in found_final_orbits if orbit not in skipped]
 
-        prunable_kmapps, total_kmapp = log_kmapps_stats(dag, input_shape[1:], found_final_orbits)
         if return_stats:
+            prunable_kmapps, total_kmapp = log_kmapps_stats(dag, input_shape[1:], found_final_orbits)
             return dag, found_final_orbits, prunable_kmapps, total_kmapp
         else:
             return dag, found_final_orbits
