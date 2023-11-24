@@ -4,8 +4,12 @@ on:
   push:
     tags:
       - '!v*'
+    paths-ignore:
+      - 'docker/requirements.txt'
   pull_request:
     branches: [ "main" ]
+    paths-ignore:
+      - 'docker/requirements.txt'
 
 permissions:
   contents: read
