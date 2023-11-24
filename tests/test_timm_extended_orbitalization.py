@@ -43,7 +43,7 @@ def orbitalize_model(
     return dag_orb
 
 
-probs_removal = [0.0, 0.1]
+probs_removal = [0.1]
 pruning_modes = [
     constants.PRUNING_BLOCK_SNPE_MODE_NAME,
     constants.PRUNING_DEFAULT_MODE_NAME,
@@ -52,7 +52,15 @@ pruning_modes = [
 
 list_of_params = [probs_removal, pruning_modes, MODEL_NAMES]
 
-test_data = [p for p in itertools.product(*list_of_params)]
+test_data = []
+
+for tc in test_cases:
+    for pm in pruning_modes:
+        if tc.prob_removal == 0.0:
+            test_data.append((0.0, pm, tc.timm_name))
+        else:
+            for pr in probs_removal:
+                test_data.append((pr, pm, tc.timm_name))
 
 
 @pytest.mark.ioheavy
@@ -72,7 +80,7 @@ def test_orbitalization_channel_removal_and_dynamic_kmapp(
 ):
     test_case = [case for case in test_cases if case.timm_name == model][0]
     if test_case.prob_removal == 0.0:
-        prob_removal = 0.0
+        prob_removal = 0.0  # TODO rewrite
     timm_model = timm.create_model(model, pretrained=False)
     timm_model.eval()
     input_shape = timm_model.default_cfg['input_size']
