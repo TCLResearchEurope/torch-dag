@@ -144,6 +144,7 @@ class GeneralOrbitalizer(Orbitalizer):
             skip_orbits_with_channels_less_than_block_size: bool = False,
             remove_tensor_mergers_and_extractors: bool = True,
             return_stats: bool = False,
+            force_log_stats: bool = True,
     ) -> Union[Tuple[DagModule, List[Orbit]], Tuple[DagModule, List[Orbit], float, float]]:
         """Function that performs orbitalization. It takes cell and return orbitalized version of recived cell. It can optionally save visualization of final orbits for a given cell - by default it's saved to `./<cell.name>.pdf`.
 
@@ -236,4 +237,6 @@ class GeneralOrbitalizer(Orbitalizer):
             prunable_kmapps, total_kmapp = log_kmapps_stats(dag, input_shape[1:], found_final_orbits)
             return dag, found_final_orbits, prunable_kmapps, total_kmapp
         else:
+            if force_log_stats:
+                prunable_kmapps, total_kmapp = log_kmapps_stats(dag, input_shape[1:], found_final_orbits)
             return dag, found_final_orbits

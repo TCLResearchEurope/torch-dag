@@ -39,6 +39,7 @@ def orbitalize_model(
         vis_final_orbits=False,
         prune_stem=True,
         input_shape=input_shape,
+        force_log_stats=False,
     )
     return dag_orb
 
