@@ -1,0 +1,28 @@
+name: Light tests with env dependencies
+
+on:
+    push:
+      tags:
+        - '!v*'
+      paths:
+        - 'docker/requirements.txt'
+    pull_request:
+      branches: [ "main" ]
+      paths:
+        - 'docker/requirements.txt'
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+            python-version: '3.9'
+      - name: Install torch-dag with dependencies
+        run: pip install -e .
+      - name: Test with pytest
+        run: pytest --light tests
