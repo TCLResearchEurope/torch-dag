@@ -1,4 +1,4 @@
-name: Light tests with env dependencies
+name: Light tests - env
 
 on:
     push:

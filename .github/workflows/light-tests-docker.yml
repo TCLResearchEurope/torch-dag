@@ -1,25 +1,30 @@
-name: Heavy tests
+name: Light tests - docker
 
 on:
-  workflow_dispatch:
-  schedule:
-    - cron: '45 12 1 * *' # 12:45 every day
+  push:
+    tags:
+      - '!v*'
+    paths-ignore:
+      - 'docker/requirements.txt'
+  pull_request:
+    branches: [ "main" ]
+    paths-ignore:
+      - 'docker/requirements.txt'
+
 permissions:
   contents: read
   packages: read
 
 jobs:
   run-tests:
+
     runs-on: ubuntu-latest
-    timeout-minutes: 120
     container:
       image: ghcr.io/tclresearcheurope/torch-dag/image:0.0.9-pytorch-2.1.0-cuda11.8-cudnn8-runtime
       options: --user root
 
+
     steps:
       - uses: actions/checkout@v4
-      - name: Run tests
-        run: |
-          pip install pytest-forked
-          pytest tests --forked
-        
+      - name: Test with pytest
+        run: pytest --light tests

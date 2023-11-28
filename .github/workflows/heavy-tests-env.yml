@@ -1,4 +1,4 @@
-name: Heavy tests with env dependencies
+name: Heavy tests - env
 
 on:
   workflow_dispatch:
