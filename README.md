@@ -1,4 +1,5 @@
-[![Heavy tests](https://github.com/TCLResearchEurope/torch-dag/actions/workflows/heavy-tests.yml/badge.svg)](https://github.com/TCLResearchEurope/torch-dag/actions/workflows/heavy-tests.yml)
+[![Heavy tests - docker](https://github.com/TCLResearchEurope/torch-dag/actions/workflows/heavy-tests-docker.yml/badge.svg)](https://github.com/TCLResearchEurope/torch-dag/actions/workflows/heavy-tests-docker.yml)
+[![Heavy tests - env](https://github.com/TCLResearchEurope/torch-dag/actions/workflows/heavy-tests-env.yml/badge.svg)](https://github.com/TCLResearchEurope/torch-dag/actions/workflows/heavy-tests-env.yml)
 
 # 1. What is `torch-dag`?
 
