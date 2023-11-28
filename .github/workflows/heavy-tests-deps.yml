@@ -2,6 +2,8 @@ name: Heavy tests with env dependencies
 
 on:
   workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * 0' # 00:00 every Sunday
   pull_request:
     branches:
       - 'dependabot/pip/**'
