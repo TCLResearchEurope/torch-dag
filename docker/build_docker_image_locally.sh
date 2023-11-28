@@ -10,12 +10,15 @@
 # - all                 : builds all images           
 #######################################
 
-
-TORCH_DAG_IMAGE_IDENTIFIER="registry.gitlab.com/tcl-research/auto-ml/devine/torch-dag:0.0.9-pytorch-2.1.0-timm-0.9.5-cuda11.8-cudnn8-runtime"
-TORCH_DAG_PLUS_IMAGE_IDENTIFIER="registry.gitlab.com/tcl-research/auto-ml/devine/torch-dag-plus:0.0.9-pytorch-2.1.0-timm-0.9.5-cuda11.8-cudnn8-runtime"
-
+REGISTRY="registry.gitlab.com/tcl-research/auto-ml/devine/"
 TORCH_DAG_BUILD_STAGE="torch-dag"
 TORCH_DAG_PLUS_BUILD_STAGE="torch-dag-plus"
+
+TAG="0.0.9-pytorch-2.1.0-timm-0.9.5-cuda11.8-cudnn8-runtime"
+
+TORCH_DAG_IMAGE_IDENTIFIER="${REGISTRY}${TORCH_DAG_BUILD_STAGE}:${TAG}"
+TORCH_DAG_PLUS_IMAGE_IDENTIFIER="${REGISTRY}${TORCH_DAG_PLUS_BUILD_STAGE}:${TAG}"
+
 
 build_and_push() {
     docker build --build-arg CACHE_DATE="$(date)" -t $1 --target $2 .
