@@ -401,7 +401,7 @@ terminado==0.18.0
     # via
     #   jupyter-server
     #   jupyter-server-terminals
-timm==0.9.5
+timm==0.9.12
     # via -r requirements.txt
 tinycss2==1.2.1
     # via nbconvert
@@ -413,7 +413,7 @@ tomli==2.0.1
     #   pip-tools
     #   pyproject-hooks
     #   pytest
-torch==2.1.0
+torch==2.1.1
     # via
     #   -r requirements.txt
     #   timm
