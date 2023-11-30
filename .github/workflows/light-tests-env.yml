@@ -27,7 +27,7 @@ jobs:
       - name: Install torch-dag with dependencies
         run: pip install -e .
       - name: Install dev dependencies
-        run: pip install -r requirements-dev.txt
+        run: pip install pytest
       - name: Test with pytest
         run: pytest --light tests
 
