@@ -401,8 +401,6 @@ terminado==0.18.0
     # via
     #   jupyter-server
     #   jupyter-server-terminals
-thop==0.1.1.post2209072238
-    # via -r requirements.txt
 timm==0.9.5
     # via -r requirements.txt
 tinycss2==1.2.1
@@ -418,7 +416,6 @@ tomli==2.0.1
 torch==2.1.0
     # via
     #   -r requirements.txt
-    #   thop
     #   timm
     #   torchvision
 torchvision==0.16.0
