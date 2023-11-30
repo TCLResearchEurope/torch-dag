@@ -5,11 +5,13 @@ on:
       tags:
         - '!v*'
       paths:
-        - 'docker/requirements.txt'
+        - 'requirements.txt'
+        - 'requirements-dev.txt'
     pull_request:
       branches: [ "main" ]
       paths:
-        - 'docker/requirements.txt'
+        - 'requirements.txt'
+        - 'requirements-dev.txt'
 
 jobs:
   run-tests:
@@ -24,5 +26,28 @@ jobs:
             python-version: '3.9'
       - name: Install torch-dag with dependencies
         run: pip install -e .
+      - name: Install dev dependencies
+        run: pip install pytest
       - name: Test with pytest
         run: pytest --light tests
+
+  update-docker-requirements:
+    needs: run-tests
+    runs-on: ubuntu-latest
+
+    steps:
+        - name: Checkout code
+          uses: actions/checkout@v4
+        - name: Set up Python
+          uses: actions/setup-python@v3
+          with:
+              python-version: '3.9'
+        - name: Install pip-tools
+          run: pip install pip-tools
+        - name: Compile requirements
+          run: ./compile_docker_requirements.sh
+        - name: Commit changes
+          uses: stefanzweifel/git-auto-commit-action@v5
+          with:
+            commit_message: Auto-update docker requirements file
+            file_pattern: "docker/requirements-docker.txt"

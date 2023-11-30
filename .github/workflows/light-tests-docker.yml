@@ -5,11 +5,13 @@ on:
     tags:
       - '!v*'
     paths-ignore:
-      - 'docker/requirements.txt'
+      - 'requirements.txt'
+      - 'requirements-dev.txt'
   pull_request:
     branches: [ "main" ]
     paths-ignore:
-      - 'docker/requirements.txt'
+      - 'requirements.txt'
+      - 'requirements-dev.txt'
 
 permissions:
   contents: read

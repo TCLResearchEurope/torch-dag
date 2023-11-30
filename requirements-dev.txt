@@ -1,0 +1,6 @@
+pytest
+ipdb
+notebook
+matplotlib
+tensorboard
+pip-tools
