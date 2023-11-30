@@ -13,7 +13,7 @@ def read_version(version_file="VERSION"):
         return f.read()
 
 
-def read_requirements(requirements_file="docker/requirements.txt"):
+def read_requirements(requirements_file="requirements.txt"):
     with open(requirements_file) as f:
         return f.read().splitlines()
 
