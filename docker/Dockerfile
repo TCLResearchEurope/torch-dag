@@ -26,7 +26,7 @@ RUN apt-get update -y && \
 
 
 WORKDIR /opt
-COPY requirements.txt requirements.txt
+COPY requirements-docker.txt requirements.txt
 
 ARG CACHE_DATE
 RUN pip --no-cache-dir install -r requirements.txt
