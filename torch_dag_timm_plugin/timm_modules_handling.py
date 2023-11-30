@@ -6,7 +6,7 @@ from torch_dag_timm_plugin.constants import SUPPORTED_TIMM_VERSION
 
 logger = logging.getLogger(__name__)
 
-if timm.__version__ == SUPPORTED_TIMM_VERSION:
+try:
     initial_autowrap_timm_modules = [
         timm.layers.Conv2dSame,
         timm.layers.grn.GlobalResponseNorm,
@@ -99,7 +99,11 @@ if timm.__version__ == SUPPORTED_TIMM_VERSION:
         timm.models.mobilevit.LinearSelfAttention,
         timm.models.mobilevit.MobileVitV2Block,
     ]
-else:
+except AttributeError as e:
+    logger.error(
+        f"{e}\n"
+        f"May originate from unsupported timm version: {timm.__version__}. Supported version is {SUPPORTED_TIMM_VERSION}."
+    )
     initial_autowrap_timm_modules = []
     initial_autowrap_timm_functions = []
     unprunable_timm_modules = []
