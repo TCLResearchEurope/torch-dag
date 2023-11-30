@@ -8,3 +8,8 @@ updates:
       # Allow only direct updates for
       - dependency-name: "torch"
       - dependency-name: "timm"
+    groups:
+      core:
+        patterns:
+          - "torch"
+          - "timm"
