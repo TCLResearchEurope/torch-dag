@@ -30,6 +30,7 @@ jobs:
         run: pytest --light tests
 
   update-docker-requirements:
+    needs: run-tests
     runs-on: ubuntu-latest
 
     steps:
