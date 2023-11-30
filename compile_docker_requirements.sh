@@ -1,0 +1,1 @@
+pip-compile -o docker/requirements-docker.txt --no-emit-index-url  requirements.txt requirements-dev.txt
