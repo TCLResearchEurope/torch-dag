@@ -13,6 +13,9 @@ on:
         - 'requirements.txt'
         - 'requirements-dev.txt'
 
+permissions:
+    contents: write
+
 jobs:
   run-tests:
     runs-on: ubuntu-latest
