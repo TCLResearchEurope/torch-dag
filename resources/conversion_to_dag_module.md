@@ -100,7 +100,7 @@ custom_module_classes = (MyStrangeActivation, )
 dag = td.build_from_unstructured_module(model, custom_autowrap_torch_module_classes=custom_module_classes)
 ```
 
-> **NOTE:** If fyou build and save a `model` with `custom_module_classes`, you need to pass the custom module classes, when loading the model after saving:
+> **NOTE:** If you build and save a `model` with `custom_module_classes`, you need to pass the custom module classes, when loading the model after saving:
  ```python
 import torch_dag as td
 loaded_model  = td.io.load_dag_from_path(
