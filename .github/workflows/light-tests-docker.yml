@@ -7,13 +7,13 @@ on:
     paths-ignore:
       - 'requirements.txt'
       - 'requirements-dev.txt'
-      - 'requirements-docker.txt'
+      - 'docker/requirements-docker.txt'
   pull_request:
     branches: [ "main" ]
     paths-ignore:
       - 'requirements.txt'
       - 'requirements-dev.txt'
-      - 'requirements-docker.txt'
+      - 'docker/requirements-docker.txt'
 
 permissions:
   contents: read
