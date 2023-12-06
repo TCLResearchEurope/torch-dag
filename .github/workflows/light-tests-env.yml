@@ -7,11 +7,13 @@ on:
       paths:
         - 'requirements.txt'
         - 'requirements-dev.txt'
+        - 'docker/requirements-docker.txt'
     pull_request:
       branches: [ "main" ]
       paths:
         - 'requirements.txt'
         - 'requirements-dev.txt'
+        - 'docker/requirements-docker.txt'
 
 permissions:
     contents: write
