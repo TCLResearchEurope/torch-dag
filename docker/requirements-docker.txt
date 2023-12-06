@@ -416,7 +416,7 @@ torch==2.1.1
     #   -r requirements.txt
     #   timm
     #   torchvision
-torchvision==0.16.0
+torchvision==0.16.1
     # via timm
 tornado==6.4
     # via
