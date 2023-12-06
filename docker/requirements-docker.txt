@@ -411,7 +411,7 @@ tomli==2.0.1
     #   pip-tools
     #   pyproject-hooks
     #   pytest
-torch==2.1.0
+torch==2.1.1
     # via
     #   -r requirements.txt
     #   timm
