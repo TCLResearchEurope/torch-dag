@@ -125,15 +125,15 @@ model for 200 epochs.
 
 ### Results on `ImageNet1K` validation set.
 
-| model      | acc (224x224) | acc (240x240) | GFLOPs (224x224) | params (m) | FLOPs reduction | 
-| ---------- |:-------------:|:-------------:|:----------------:|------------|-----------------|
-| fbnetv3g   |    0.8061     |    0.8132     |       2.14       | 16.6       |                 |
-| fbnetv3d   |    0.7856     |    0.7927     |       1.04       | 10.3       |                 |
-| fbnetv3b   |    0.7812     |    0.7871     |      0.845       | 8.6        |                 |
-| m16        |    0.7742     |    0.7793     |      0.799       | 7.8        | ↓ 62.5%         | 
-| m22        |    0.7920     |    0.7955     |       1.2        | 10.5       | ↓ 43.9%         | 
-| m28        |    0.79686    |    0.8016     |      1.396       | 11.6       | ↓ 34.8%         |
-| m32        |     0.803     |    0.8025     |       1.61       | 13.1       | ↓ 24.8%         |
+| model                                                               | acc (224x224) | acc (240x240) | GFLOPs (224x224) | params (m) | FLOPs reduction | 
+|---------------------------------------------------------------------|:-------------:|:-------------:|:----------------:|------------|-----------------|
+| fbnetv3g                                                            |    0.8061     |    0.8132     |       2.14       | 16.6       |                 |
+| fbnetv3d                                                            |    0.7856     |    0.7927     |       1.04       | 10.3       |                 |
+| fbnetv3b                                                            |    0.7812     |    0.7871     |      0.845       | 8.6        |                 |
+| [m16](https://huggingface.co/TCLResearchEurope/fbnetv3_g_pruned_37) |    0.7742     |    0.7793     |      0.799       | 7.8        | ↓ 62.5%         | 
+| [m22](https://huggingface.co/TCLResearchEurope/fbnetv3_g_pruned_52) |    0.7920     |    0.7955     |       1.2        | 10.5       | ↓ 43.9%         | 
+| [m28](https://huggingface.co/TCLResearchEurope/fbnetv3_g_pruned_65) |    0.79686    |    0.8016     |      1.396       | 11.6       | ↓ 34.8%         |
+| [m32](https://huggingface.co/TCLResearchEurope/fbnetv3_g_pruned_75) |     0.803     |    0.8025     |       1.61       | 13.1       | ↓ 24.8%         |
 
 ![f1](resources/pruning_results_plots/f1.png "Title")
 ---
@@ -145,12 +145,12 @@ by the design of Vision Transformers. We prune `convnextv2_nano.fcmae_ft_in22k_i
 model for 200 epochs.
 
 ### Results on `ImageNet1K` validation set.
-|  model   | acc (224x224) | GFLOPs | params (m) | FLOPs reduction |
-|:--------:|:-------------:|:------:|:----------:|-----------------|
-| baseline |    0.8197     |  4.91  |    15.6    |                 |
-|   m0.5   |    0.8155     |  2.64  |    9.4     | ↓  46.2%        |
-|   m0.3   |    0.7922     |  1.68  |    6.3     | ↓  65.8%        |
-|   m0.2   |    0.7531     |  0.93  |    3.8     | ↓ 81.0%         |
+|                                    model                                    | acc (224x224) | GFLOPs | params (m) | FLOPs reduction |
+|:---------------------------------------------------------------------------:|:-------------:|:------:|:----------:|-----------------|
+|                                  baseline                                   |    0.8197     |  4.91  |    15.6    |                 |
+| [m0.5](https://huggingface.co/TCLResearchEurope/convnetxtv2_nano_pruned_54) |    0.8155     |  2.64  |    9.4     | ↓  46.2%        |
+| [m0.3](https://huggingface.co/TCLResearchEurope/convnetxtv2_nano_pruned_34) |    0.7922     |  1.68  |    6.3     | ↓  65.8%        |
+| [m0.2](https://huggingface.co/TCLResearchEurope/convnetxtv2_nano_pruned_19) |    0.7531     |  0.93  |    3.8     | ↓ 81.0%         |
 
 ![f5](resources/pruning_results_plots/f5.png "Title")
 ---
