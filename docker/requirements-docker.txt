@@ -22,7 +22,7 @@ attrs==23.1.0
     # via
     #   jsonschema
     #   referencing
-babel==2.13.1
+babel==2.14.0
     # via jupyterlab-server
 beautifulsoup4==4.12.2
     # via nbconvert
@@ -74,21 +74,21 @@ fonttools==4.46.0
     # via matplotlib
 fqdn==1.5.1
     # via jsonschema
-fsspec==2023.12.1
+fsspec==2023.12.2
     # via
     #   huggingface-hub
     #   torch
 fvcore==0.1.5.post20221221
     # via -r requirements.txt
-google-auth==2.25.1
+google-auth==2.25.2
     # via
     #   google-auth-oauthlib
     #   tensorboard
-google-auth-oauthlib==1.1.0
+google-auth-oauthlib==1.2.0
     # via tensorboard
 graphviz==0.20.1
     # via -r requirements.txt
-grpcio==1.59.3
+grpcio==1.60.0
     # via tensorboard
 huggingface-hub==0.19.4
     # via timm
@@ -160,14 +160,14 @@ jupyter-events==0.9.0
     # via jupyter-server
 jupyter-lsp==2.2.1
     # via jupyterlab
-jupyter-server==2.12.0
+jupyter-server==2.12.1
     # via
     #   jupyter-lsp
     #   jupyterlab
     #   jupyterlab-server
     #   notebook
     #   notebook-shim
-jupyter-server-terminals==0.4.4
+jupyter-server-terminals==0.5.0
     # via jupyter-server
 jupyterlab==4.0.9
     # via notebook
@@ -290,7 +290,7 @@ portalocker==2.8.2
     # via iopath
 prometheus-client==0.19.0
     # via jupyter-server
-prompt-toolkit==3.0.41
+prompt-toolkit==3.0.43
     # via ipython
 protobuf==4.23.4
     # via tensorboard
@@ -340,7 +340,7 @@ pyzmq==25.1.2
     #   ipykernel
     #   jupyter-client
     #   jupyter-server
-referencing==0.31.1
+referencing==0.32.0
     # via
     #   jsonschema
     #   jsonschema-specifications
@@ -416,7 +416,7 @@ torch==2.1.2
     #   -r requirements.txt
     #   timm
     #   torchvision
-torchvision==0.16.1
+torchvision==0.16.2
     # via timm
 tornado==6.4
     # via
@@ -450,7 +450,7 @@ triton==2.1.0
     # via torch
 types-python-dateutil==2.8.19.14
     # via arrow
-typing-extensions==4.8.0
+typing-extensions==4.9.0
     # via
     #   async-lru
     #   huggingface-hub
