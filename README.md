@@ -62,7 +62,7 @@ pip install torch-dag
 
 # 4. Basics
 
-If you have a a `toch.nn.Module` model and you want to convert it to a `DagModule` simply run:
+If you have a `toch.nn.Module` model and you want to convert it to a `DagModule` simply run:
 
 ```python
 import torch_dag as td
@@ -75,7 +75,7 @@ For details and more extended documentation see [How to convert torch.nn.Module 
 
 ## 5.1 Channel-pruning
 
-A `jupyter` notebook with atoy example of channel pruning can be viewed [here](./resources/examples/mnist_notebook.ipynb).
+A `jupyter` notebook with a toy example of channel pruning can be viewed [here](./resources/examples/mnist_notebook.ipynb).
 If you want to read a more detailed intro to channel pruning with `torch-dag` havce a look at [pruning readme](resources/pruning_readme.md).
 
 This is the algorithm we spent plenty of time developing and refining. It helped us to **WIN** [Mobile AI 2022 Single-Image Depth Estimation on Mobile Devices](https://arxiv.org/abs/2211.04470).
@@ -92,7 +92,7 @@ This is the algorithm we spent plenty of time developing and refining. It helped
 ---
 
 At this point we support plenty of convolutional models and a subset of vision transformer architectures. 
-A full list of supported `timm` models and a proportion of FLOPS that can be removed in each mdoel can be seen
+A full list of supported `timm` models and a proportion of FLOPS that can be removed in each model can be seen
 [channel pruning supported models](./resources/channel_pruning_supported_models_table.md).
 
 We **do NOT** support models that cannot be traced using `torch.FX` (there are notable exceptions, that require
@@ -155,7 +155,7 @@ model for 200 epochs.
 ![f5](resources/pruning_results_plots/f5.png "Title")
 ---
 
-To see more much more results have a look [here](resources/pruning_results.md)
+To see much more results have a look [here](resources/pruning_results.md)
 
 ## TODO Block-pruning
 
