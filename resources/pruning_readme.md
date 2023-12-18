@@ -14,7 +14,7 @@ model = MyModel(...)
 dag_model = td.build_from_unstructured_module(model)
 
 # run conversion sanity check
-td.compare_module_outputs(first_module=model, second_module=dag, input_shape=(8, 3, 224, 224))
+td.compare_module_outputs(first_module=model, second_module=dag_model, input_shape=(8, 3, 224, 224))
 ```
 
 You can run this conversion either before or after the training of the original model.
@@ -32,7 +32,7 @@ initial_normalized_flops = tda.pruning.compute_normalized_flops(dag_model, input
 
 ### 3. Specify:
 
-* the `pruning proprion`, i.e., the target fraction of the baseline model size. This should be a number in `(0, 1)`.
+* the `pruning proportion`, i.e., the target fraction of the baseline model size. This should be a number in `(0, 1)`.
 * number of pruning training steps (:exclamation: for reasons related to optimization this should usually be > 10k
   steps)
 * input shape (without the batch dimension), for example `(3, 224, 224)`
