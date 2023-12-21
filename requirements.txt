@@ -1,7 +1,7 @@
 click
 fvcore
 timm>=0.9.5,<=0.9.12
-torch>=2.1.0,<=2.1.1
+torch>=2.1.0,<=2.1.2
 tqdm
 graphviz
 pyyaml
