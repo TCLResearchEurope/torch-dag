@@ -8,7 +8,7 @@ import torch
 
 from torch_dag import structured_modules as smodules
 from torch_dag.core.dag_module import DagModule
-from torch_dag.core.dag_module import InnerVertex, Vertex
+from torch_dag.core.dag_module import InputVertex, InnerVertex, Vertex
 from torch_dag_algorithms.pruning.commons import PASS_THROUGH_CHANNELS_CLASSES
 from torch_dag_algorithms.pruning.commons import is_source, get_orbits_dict, is_linear_source, is_depthwise_conv
 from torch_dag_algorithms.pruning.modules import OrbitModule
@@ -219,8 +219,11 @@ def compute_right_multipliers(
     right_multipliers = []
     for k, vertex in enumerate(dag.inner_vertices):
         if isinstance(vertex.module, PASS_THROUGH_CHANNELS_CLASSES):
-            pd_index = dag.inner_vertices.index(vertex.predecessors[0])
-            right_multiplier = right_multipliers[pd_index]
+            if isinstance(vertex.predecessors[0], InputVertex):
+                right_multiplier = torch.tensor(1.0, device=average_channels_list[k][0].device)
+            else:
+                pd_index = dag.inner_vertices.index(vertex.predecessors[0])
+                right_multiplier = right_multipliers[pd_index]
         elif vertex.orbit is None:
             right_multiplier = torch.tensor(1.0, device=average_channels_list[k][0].device)
         else:
