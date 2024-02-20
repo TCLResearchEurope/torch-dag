@@ -1,6 +1,6 @@
 click
 fvcore
-timm>=0.9.5,<=0.9.12
+timm>=0.9.5,<=0.9.16
 torch>=2.1.0,<=2.1.2
 tqdm
 graphviz
