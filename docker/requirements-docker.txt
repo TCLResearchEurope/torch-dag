@@ -399,7 +399,7 @@ terminado==0.18.0
     # via
     #   jupyter-server
     #   jupyter-server-terminals
-timm==0.9.12
+timm==0.9.16
     # via -r requirements.txt
 tinycss2==1.2.1
     # via nbconvert
