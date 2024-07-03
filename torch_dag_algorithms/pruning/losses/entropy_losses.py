@@ -34,7 +34,7 @@ def entropy_loss(
             logits = orb.logits
             probs_ = torch.sigmoid(logits)[..., None]
             probs = torch.cat([probs_, 1. - probs_], axis=1)
-            loss = torch.maximum(- (probs * torch.log(probs)).sum(dim=1).mean(), torch.tensor(epsilon))
+            loss = -(probs * torch.log(probs)).sum(dim=1).mean()
             result.append(loss)
 
         return lmbda * multiplier * torch.stack(result, dim=0).mean()
