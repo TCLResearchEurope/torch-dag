@@ -145,6 +145,7 @@ class GeneralOrbitalizer(Orbitalizer):
             remove_tensor_mergers_and_extractors: bool = True,
             return_stats: bool = False,
             force_log_stats: bool = True,
+            simple_logits: bool = False,
     ) -> Union[Tuple[DagModule, List[Orbit]], Tuple[DagModule, List[Orbit], float, float]]:
         """Function that performs orbitalization. It takes cell and return orbitalized version of recived cell. It can optionally save visualization of final orbits for a given cell - by default it's saved to `./<cell.name>.pdf`.
 
@@ -155,7 +156,7 @@ class GeneralOrbitalizer(Orbitalizer):
             :input_shape: (Optional[List[Tuple[int]]], optional): Input shapes that will be used to calculate kmapps and during visualization to calculate shapes on a given layer. Defaults to [(1, 384, 384, 3)].
             :skip_orbits_with_channels_less_than_block_size: (bool, optional): Flag indicating whether orits with channels_num less than block_size should be skipped durining orbitalization.
             :remove_tensor_mergers_and_extractors: (bool, optional): Flag indicating whether tensors mergers and tensor extractors should be removed from flatten cell before orbitalization process.
-
+            :simple_logits: (bool optional): use just a plain logits instead of a conv net as logits
         Returns:
             Tuple[nd.cells.Cell, List[Orbit]]: Orbitalized cell with removed nd.ops.TensorMergers and nd.ops.TensorExtractors.
         """
@@ -226,7 +227,8 @@ class GeneralOrbitalizer(Orbitalizer):
                 dag=dag,
                 orbit=final_orbit,
                 pruning_mode=self.pruning_mode,
-                skip_orbits_with_channels_less_than_block_size=skip_orbits_with_channels_less_than_block_size
+                skip_orbits_with_channels_less_than_block_size=skip_orbits_with_channels_less_than_block_size,
+                simple_logits=simple_logits
             )
             if isinstance(res, Skipped):
                 skipped += [final_orbit]
