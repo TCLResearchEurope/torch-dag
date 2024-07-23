@@ -83,6 +83,7 @@ class OrbitModule(torch.nn.Module):
             distillation_mode: str = constants.PRUNING_DEFAULT_MODE_NAME,
             block_size: Optional[int] = None,
             indices_of_source_vertices=None,
+            simple_logits: bool=False,
     ):
         super().__init__()
         self.name = name
@@ -90,10 +91,19 @@ class OrbitModule(torch.nn.Module):
         self.distillation_mode = distillation_mode
         self.block_size = block_size
         self._testing_logits = None
-        self.logits_ = torch.nn.parameter.Parameter(data=torch.zeros(size=[num_channels]))
+        self.simple_logits = simple_logits
 
-        torch.nn.init.trunc_normal_(tensor=self.logits_, mean=1.0, std=0.1, a=0.95, b=1.05)
-
+        if self.simple_logits:
+            self.logits_ = torch.nn.parameter.Parameter(data=torch.zeros(size=[num_channels]))
+            torch.nn.init.trunc_normal_(tensor=self.logits_, mean=1.0, std=0.1, a=0.95, b=1.05)
+        else:
+            self.conv1 = torch.nn.Conv2d(
+                in_channels=num_channels, out_channels=num_channels, kernel_size=3, groups=num_channels)
+            self.conv2 = torch.nn.Conv2d(
+                in_channels=num_channels,
+                out_channels=num_channels,
+                kernel_size=1,
+            )
         self._optionally_set_block_size_for_whole_block_pruning(distillation_mode=distillation_mode)
         self._validate_distilation_mode_and_block_size(distillation_mode=distillation_mode, block_size=block_size)
         self.bkd_masking_losses = {}
@@ -123,7 +133,19 @@ class OrbitModule(torch.nn.Module):
         # TODO This is a hack for testing, remove/refactor it
         if self.debug_logits is not None:
             return self.debug_logits
-        return 13*torch.nn.functional.sigmoid(self.logits_)-6.5
+
+        if self.simple_logits:
+            # scale output to the [-6.5, 6.5] range
+            return 13*torch.nn.functional.sigmoid(self.logits_)-6.5
+
+        else:
+             kernel_size = self.conv1.kernel_size
+             device = self.conv1.weight.device
+             x = torch.ones(size=(1, self.num_channels, *kernel_size), device=device)
+             x = self.conv1(x)
+             x = self.conv2(x)
+             x = (constants.INITIAL_LOGITS_VALUE_FOR_PRUNING + constants.SIMPLE_ORBIT_LOGITS_MULTIPLIER * x)
+             return self.clip_logits(torch.mean(x, dim=(0, 2, 3), keepdim=False))
 
     def compute_average_number_of_output_channels(self):
         if self.distillation_mode == constants.PRUNING_DEFAULT_MODE_NAME:
