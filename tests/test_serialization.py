@@ -27,6 +27,7 @@ class ModuleOne(torch.nn.Module):
         x = self.relu(x)
         x = self.channel_affine(x)
         x = self.silu(x)
+        return x
 
 
 class ModuleTwo(torch.nn.Module):
