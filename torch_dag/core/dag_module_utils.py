@@ -293,7 +293,7 @@ def compare_module_outputs(
     x = torch.normal(mean=torch.zeros(size=input_shape))
     y1 = first_module(x)
     y2 = second_module(x)
-    if not isinstance(y1, List):
+    if not isinstance(y1, (list, tuple)):
         y1 = [y1]
         y2 = [y2]
 
