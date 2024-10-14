@@ -6,6 +6,7 @@ from copy import deepcopy
 
 import pytest
 import timm
+import torch
 
 from dev_tools.algorithms_testing_tools import test_conversion_to_dag as _test_conversion_to_dag, \
     test_orbitalization_and_channel_removal as _test_orbitalization_and_channel_removal
@@ -47,3 +48,32 @@ def test_timm_model_light(test_case: TimmModelTestCase, tmpdir):
 )
 def test_timm_model_heavy(test_case: TimmModelTestCase, tmpdir):
     run_timm_model_test(test_case, tmpdir)
+
+def test_multi_output_model(
+):
+    class DummyModel(torch.nn.Module):
+        def __init__(self):
+            super().__init__()
+            self.input = torch.nn.Sequential(torch.nn.Conv2d(3, 3, 3, 1, 1), torch.nn.ReLU())
+            self.head_0 = torch.nn.Sequential(torch.nn.Conv2d(3, 64, 3, 1, 1), torch.nn.ReLU())
+            self.head_1 = torch.nn.Sequential(torch.nn.Conv2d(3, 128, 3, 1, 1), torch.nn.ReLU())
+            self.head_2 = torch.nn.Sequential(torch.nn.Conv2d(3, 256, 3, 1, 1), torch.nn.ReLU())
+
+        def forward(self, x):
+            x = self.input(x)
+            out_0 = self.head_0(x)
+            out_1 = self.head_1(x)
+            out_2 = self.head_2(x)
+            return out_0, out_1, out_2
+
+    torch_model = DummyModel()
+    torch_model.eval()
+    input_shape = (1, 3, 224, 224)
+    dag, msg = _test_conversion_to_dag(torch_model, input_shape=input_shape)
+    result_channel_pruning = _test_orbitalization_and_channel_removal(
+        dag=deepcopy(dag),
+        input_shape=input_shape,
+        prob_removal=0.5,
+    )
+    assert result_channel_pruning['status'] == SUCCESS_RESULT
+    assert result_channel_pruning['prunable_fraction'] > 0.0
