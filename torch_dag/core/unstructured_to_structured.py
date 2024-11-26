@@ -279,7 +279,7 @@ class DagBuilder:
                             predecessors=predecessors,
                         )
 
-                    if node.next.op == 'output':
+                    if 'output' in [node.name for node in node.users]:
                         output_vertices.append(vertex)
 
         if len(output_vertices) == 1:

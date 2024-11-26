@@ -542,7 +542,14 @@ class DagModule(torch.nn.Module):
         if input_shape_for_verification:
             dag.eval()
             new_output = dag(x)
-            assert torch.abs(reference_output - new_output).sum() == 0.0
+            if isinstance(reference_output, (list, tuple)):
+                assert isinstance(new_output, (list, tuple))
+                assert len(reference_output) == len(new_output)
+                for ref, new in zip(reference_output, new_output):
+                    assert torch.abs(ref - new).sum() == 0.0
+            else:
+                assert torch.abs(reference_output - new_output).sum() == 0.0
+
 
         # TODO: Remove after validation
         # self._update_inner_modules()
