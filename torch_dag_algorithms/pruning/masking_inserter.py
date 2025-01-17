@@ -47,7 +47,8 @@ class MaskInserter:
             dag: DagModule,
             orbit: Orbit,
             pruning_mode: str,
-            skip_orbits_with_channels_less_than_block_size: bool
+            skip_orbits_with_channels_less_than_block_size: bool,
+            simple_logits: bool = False
     ) -> Union[OrbitModule, commons.Skipped]:
         num_channels = get_source_out_channels(orbit.sources[0].module)
 
@@ -63,6 +64,7 @@ class MaskInserter:
             num_channels=num_channels,
             indices_of_source_vertices=indices_of_source_vertices,
             block_size=self.block_size,
+            simple_logits=simple_logits,
         )
         for vertex in orbit.vertices_in_scope:
             if vertex not in orbit.sinks or vertex in orbit.sources:

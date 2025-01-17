@@ -6,4 +6,4 @@ def anneal(
         decay_steps: int,
         decay_rate: float = 0.1,
 ) -> torch.Tensor:
-    return 1.0 - decay_rate ** (global_step / decay_steps)
+    return 1.0 - decay_rate ** (global_step *2/ decay_steps)
