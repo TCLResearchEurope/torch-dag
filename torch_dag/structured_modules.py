@@ -1588,6 +1588,14 @@ class PowerModule(torch.nn.Module):
     def forward(self, inputs: torch.Tensor):
         return torch.pow(inputs, self.pow)
 
+@register_notrace_module
+class RsqrtModule(torch.nn.Module):
+    # wraps torch.rsqrt
+    def __init__(self):
+        super().__init__()
+
+    def forward(self, x) -> torch.Tensor:
+        return torch.rsqrt(x)
 
 @register_notrace_module
 class UnsqueezeModule(torch.nn.Module):

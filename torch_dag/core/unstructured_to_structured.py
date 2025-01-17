@@ -383,6 +383,9 @@ class DagBuilder:
             assert len(node.args) == 1
             return structured_modules.MeanModule(**node.kwargs)
 
+        elif node.target == torch.rsqrt:
+            return structured_modules.RsqrtModule()
+
         elif node.target == torch.sum:
             raise NotImplementedError
 
