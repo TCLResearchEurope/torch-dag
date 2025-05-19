@@ -1,8 +1,8 @@
 click
 fvcore
-timm>=0.9.5,<=0.9.12
-torch>=2.1.0,<=2.1.2
+timm>=0.9.5
+torch>=2.1.0
 tqdm
 graphviz
 pyyaml
-numpy==1.26.3
+numpy>=1.26.3
