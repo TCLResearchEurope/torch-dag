@@ -20,15 +20,18 @@ def parse_args():
     arg_parser.add_argument(
         "--model_path",
         type=str,
+        default='/nas/projects/auto-ml/models/maciej/ai/deno/ft/topaz/newdt/naf/prune/08/checkpoints/epoch_8000'
     )
     arg_parser.add_argument(
         "--saving_path",
         type=str,
+        default='/nas/projects/auto-ml/models/maciej/ai/deno/ft/topaz/newdt/naf/prune/08/checkpoints/epoch_8000/pruned'
     )
     arg_parser.add_argument(
         "--input_shape",
         type=int,
         nargs="+",
+        default=[1, 4, 256, 256],
         help="Input shape to the orbitalized model (including batch dimension).",
     )
     args = arg_parser.parse_args()

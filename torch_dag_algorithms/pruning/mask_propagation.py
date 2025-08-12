@@ -185,7 +185,13 @@ def compute_channels_masks(
         else:
             result = [non_trivial_predecessors_channels_masks[0][0]]
 
-    elif isinstance(vertex.module, (smodules.AddModule, smodules.SubModule, smodules.MulModule)):
+    elif isinstance(vertex.module, torch.nn.PixelShuffle):
+        result = compute_subixel_channels_masks(
+            vertex=vertex,
+            predecessors_channels_masks=predecessors_channels_masks,
+        )
+
+    elif isinstance(vertex.module, (smodules.AddModule, smodules.SubModule, smodules.MulModule, smodules.PermuteModule)):
         result = compute_elementwise_channels_masks(
             vertex=vertex,
             predecessors_channels_masks=predecessors_channels_masks,
