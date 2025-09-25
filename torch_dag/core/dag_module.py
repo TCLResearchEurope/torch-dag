@@ -416,7 +416,7 @@ class DagModule(torch.nn.Module):
         """
         with open(os.path.join(path, 'config.dict.json'), 'r') as f:
             config_dict = json.load(f)
-        m = torch.load(os.path.join(path, 'modules.pt'), map_location=map_location)
+        m = torch.load(os.path.join(path, 'modules.pt'), map_location=map_location, weights_only=False)
         return cls.load_from_config_dict_and_atomic_modules(
             config_dict=config_dict,
             atomic_modules=m
