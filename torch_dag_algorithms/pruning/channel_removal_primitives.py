@@ -69,6 +69,7 @@ trivial_behavior_modules = (
     nn.Conv1d,
     # GlobalResponseNorm,  # TODO this is only for block pruning!
     smodules.Clamp,
+    nn.PixelShuffle,
 )
 
 
