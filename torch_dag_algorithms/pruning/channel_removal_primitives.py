@@ -68,6 +68,7 @@ trivial_behavior_modules = (
     smodules.ArgModule,
     nn.Conv1d,
     # GlobalResponseNorm,  # TODO this is only for block pruning!
+    smodules.Clamp,
 )
 
 

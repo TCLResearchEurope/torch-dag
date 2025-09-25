@@ -1759,6 +1759,17 @@ class GetItemModule(torch.nn.Module):
             return [x for k, x in inputs if k in self.index]
 
 
+@register_notrace_module
+class Clamp(torch.nn.Module):
+    def __init__(self, min, max):
+        super().__init__()
+        self.min = min
+        self.max = max
+
+    def forward(self, x):
+        return torch.clamp(x, self.min, self.max)
+
+
 class StageZeroSllrcAttention(torch.nn.Module):
     def __init__(
             self,
