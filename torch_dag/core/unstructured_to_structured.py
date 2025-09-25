@@ -448,8 +448,20 @@ class DagBuilder:
             if len(node.args) == 3:
                 return structured_modules.ScaledDotProductAttentionModule()
             else:
-                raise NotImplementedError
-
+                op = "torch.nn.functional.scaled_dot_product_attention"
+                m = f"{op} with {len(node.args)=} not supported"
+                raise NotImplementedError(m)
+        elif node.target == torch.clamp:
+            if len(node.args) == 3:
+                clamp_min = node.args[1]
+                clamp_max = node.args[2]
+                msg = "For torch.clamp only int/float values supported for min/max"
+                assert isinstance(clamp_min, (int, float)), msg
+                assert isinstance(clamp_max, (int, float)), msg
+                return structured_modules.Clamp(clamp_min, clamp_max)
+            else:
+                op = "torch.clamp"
+                raise NotImplementedError(f"{op} with {len(node.args)=} not supported")
         elif isinstance(node.target, str):
             if node.target == 'output':  # output node in torch.FX graph
                 return
