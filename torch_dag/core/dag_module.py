@@ -579,7 +579,7 @@ class DagModule(torch.nn.Module):
         # https://discuss.pytorch.org/t/how-to-check-if-model-is-on-cuda/180/10
         # useful, but may be dangerous
         self.update_inner_modules()
-        device_ = next(iter(self.parameters())).device
+        device_ = next(self.parameters()).device
         if not all([p.device == device_ for p in self.parameters()]):
             raise AssertionError(f'Not all parameters of {self.name} are on the same device')
         return device_

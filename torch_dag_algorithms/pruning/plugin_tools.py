@@ -30,6 +30,7 @@ class ChannelPruning:
             flops_loss_weight: float = 10.0,
             anneal_losses: bool = True,
             custom_unprunable_module_classes: Tuple[Type[torch.nn.Module]] = (),
+            simple_logits: bool = False,
 
     ):
         self.model = model
@@ -48,6 +49,7 @@ class ChannelPruning:
         self.custom_unprunable_module_classes = custom_unprunable_module_classes
         self.initial_normalized_flops = compute_static_kmapp(
             self.model, input_shape_without_batch=self.input_shape_without_batch)
+        self.simple_logits = simple_logits
         self.prunable_proportion = None
 
     def prepare_for_pruning(self) -> DagModule:
@@ -61,7 +63,9 @@ class ChannelPruning:
             prune_stem=self.prune_stem,
             input_shape=(1,) + self.input_shape_without_batch,
             return_stats=True,
+            simple_logits=self.simple_logits
         )
+
         self.prunable_proportion = prunable_kmapps / total_kmapp
         dag_orbitalized.cache_forward_dict = True
         with torch.no_grad():
