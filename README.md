@@ -71,9 +71,7 @@ dag_model = td.build_from_unstructured_module(model)
 
 For details and more extended documentation see [How to convert torch.nn.Module instances to DagModule?](resources/conversion_to_dag_module.md)
 
-# 5. Model compression algorithms
-
-## 5.1 Channel-pruning
+# 5. Channel pruning
 
 A `jupyter` notebook with a toy example of channel pruning can be viewed [here](./resources/examples/mnist_notebook.ipynb).
 If you want to read a more detailed intro to channel pruning with `torch-dag` havce a look at [pruning readme](resources/pruning_readme.md).
@@ -91,7 +89,7 @@ This is the algorithm we spent plenty of time developing and refining. It helped
 | channel prunable_models |          585 | 61.90%       |
 ---
 
-At this point we support plenty of convolutional models and a subset of vision transformer architectures. 
+At this point we support plenty of convolutional models and a subset of vision transformer architectures.
 A full list of supported `timm` models and a proportion of FLOPS that can be removed in each model can be seen
 [channel pruning supported models](./resources/channel_pruning_supported_models_table.md).
 
@@ -100,7 +98,7 @@ additional processing like `vit*` and `deit3*` models, which **are** supported)
 see [limitations-of-symbolic-tracing](https://pytorch.org/docs/stable/fx.html#limitations-of-symbolic-tracing). If you
 have a custom model that can be traced:
 
-```python=
+```python
 my_module = Model()
 from torch.fx import symbolic_trace
 # Symbolic tracing frontend - captures the semantics of the module
@@ -125,13 +123,13 @@ model for 200 epochs.
 
 ### Results on `ImageNet1K` validation set.
 
-| model                                                               | acc (224x224) | acc (240x240) | GFLOPs (224x224) | params (m) | FLOPs reduction | 
+| model                                                               | acc (224x224) | acc (240x240) | GFLOPs (224x224) | params (m) | FLOPs reduction |
 |---------------------------------------------------------------------|:-------------:|:-------------:|:----------------:|------------|-----------------|
 | fbnetv3g                                                            |    0.8061     |    0.8132     |       2.14       | 16.6       |                 |
 | fbnetv3d                                                            |    0.7856     |    0.7927     |       1.04       | 10.3       |                 |
 | fbnetv3b                                                            |    0.7812     |    0.7871     |      0.845       | 8.6        |                 |
-| [m16](https://huggingface.co/TCLResearchEurope/fbnetv3_g_pruned_37) |    0.7742     |    0.7793     |      0.799       | 7.8        | ↓ 62.5%         | 
-| [m22](https://huggingface.co/TCLResearchEurope/fbnetv3_g_pruned_52) |    0.7920     |    0.7955     |       1.2        | 10.5       | ↓ 43.9%         | 
+| [m16](https://huggingface.co/TCLResearchEurope/fbnetv3_g_pruned_37) |    0.7742     |    0.7793     |      0.799       | 7.8        | ↓ 62.5%         |
+| [m22](https://huggingface.co/TCLResearchEurope/fbnetv3_g_pruned_52) |    0.7920     |    0.7955     |       1.2        | 10.5       | ↓ 43.9%         |
 | [m28](https://huggingface.co/TCLResearchEurope/fbnetv3_g_pruned_65) |    0.79686    |    0.8016     |      1.396       | 11.6       | ↓ 34.8%         |
 | [m32](https://huggingface.co/TCLResearchEurope/fbnetv3_g_pruned_75) |     0.803     |    0.8025     |       1.61       | 13.1       | ↓ 24.8%         |
 
@@ -156,7 +154,3 @@ model for 200 epochs.
 ---
 
 To see much more results have a look [here](resources/pruning_results.md)
-
-## TODO Block-pruning
-
-## TODO Learnable Low Rank Compression (LLRC)
